@@ -1,12 +1,14 @@
 package calculator.parser;
 
+import calculator.evaluator.InfixEvaluator;
+import calculator.exception.ExpressionParsingException;
 import calculator.expression.InfixExpression;
-import calculator.common.Lexical;
-import calculator.common.Number;
-import calculator.common.Operator;
+import calculator.base.Lexical;
+import calculator.base.Number;
+import calculator.base.Operator;
 
 import static java.lang.Character.isDigit;
-import static calculator.common.Operator.INVALID;
+import static calculator.base.Operator.INVALID;
 
 public class Parser {
     private final String expression;
@@ -30,7 +32,7 @@ public class Parser {
         } else if (isOperator(character)) {
             return Operator.of(character);
         }
-        throw new RuntimeException("The following expression cannot be parsed");
+        throw new ExpressionParsingException();
     }
 
     public InfixExpression parseToInfix() {

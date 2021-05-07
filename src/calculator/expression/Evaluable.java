@@ -1,8 +1,9 @@
 package calculator.expression;
 
-import calculator.common.Lexical;
+import calculator.base.Lexical;
+import calculator.evaluator.Executable;
 
 public interface Evaluable {
     void add(Lexical lexical);
-    Lexical evaluate();
+    Lexical evaluate(Executable evaluator);
 }

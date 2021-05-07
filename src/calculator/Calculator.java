@@ -1,7 +1,8 @@
 package calculator;
 
+import calculator.evaluator.InfixEvaluator;
 import calculator.expression.InfixExpression;
-import calculator.common.Lexical;
+import calculator.base.Lexical;
 import calculator.parser.Parser;
 
 import java.util.Scanner;
@@ -16,7 +17,8 @@ public class Calculator {
         Parser parser = new Parser(expression);
         InfixExpression parsedInfixExpression = parser.parseToInfix();
 
-        Lexical result = parsedInfixExpression.evaluate();
+        InfixEvaluator infixEvaluator = new InfixEvaluator();
+        Lexical result = parsedInfixExpression.evaluate(infixEvaluator);
         System.out.println("Result is : " + result.getValue());
     }
 }
