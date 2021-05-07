@@ -8,17 +8,35 @@ import calculator.parser.ExpressionParser;
 import java.util.Scanner;
 
 public class Calculator {
-    public static void main(String[] args) {
-        System.out.println("Please enter the expression to evaluate : ");
+    private final Scanner scanner;
+    private String expression;
 
-        Scanner scanner = new Scanner(System.in);
-        String expression = scanner.nextLine();
+    public Calculator(Scanner scanner) {
+        this.scanner = scanner;
+    }
 
+    public void takeInput() {
+        expression = scanner.nextLine();
+    }
+
+    public String calculate() {
         ExpressionParser expressionParser = new ExpressionParser(expression);
         InfixExpression parsedInfixExpression = expressionParser.toInfix();
 
         InfixEvaluator infixEvaluator = new InfixEvaluator();
         Lexical result = parsedInfixExpression.evaluate(infixEvaluator);
-        System.out.println("Result is : " + result.getValue());
+
+        return result.getValue().toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Please enter the expression to evaluate : ");
+
+        Scanner scanner = new Scanner(System.in);
+        Calculator calculator = new Calculator(scanner);
+
+        calculator.takeInput();
+        String result = calculator.calculate();
+        System.out.println("Result is : " + result);
     }
 }
