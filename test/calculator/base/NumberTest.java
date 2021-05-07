@@ -12,22 +12,22 @@ class NumberTest {
 
     @Test
     public void shouldReturnOneAsTheValueOfNumber() {
-        Number one = new Number('1');
+        Number one = new Number("1");
 
         assertEquals(one.getValue(), Double.valueOf(1));
     }
 
     @Test
     public void shouldReturnOperandAsTypeOfNumber() {
-        Number one = new Number('1');
+        Number one = new Number("1");
 
         assertEquals(one.getType(), OPERAND);
     }
 
     @Test
     void shouldReturnThreeByAddingOneAndTwo() {
-        Number one = new Number('1');
-        Number two = new Number('2');
+        Number one = new Number("1");
+        Number two = new Number("2");
 
         Number result = one.add(two);
 
@@ -36,8 +36,8 @@ class NumberTest {
 
     @Test
     void shouldReturnThreeBySubtractingFiveAndTwo() {
-        Number five = new Number('5');
-        Number two = new Number('2');
+        Number five = new Number("5");
+        Number two = new Number("2");
 
         Number result = five.subtract(two);
 
@@ -57,7 +57,7 @@ class NumberTest {
 
     @Test
     void shouldReturnThreeByDividingSixAndTwoPointZero() {
-        Number six = new Number('6');
+        Number six = new Number("6");
         Number twoPointZero = new Number(2.0);
 
         Number result = six.divide(twoPointZero);
@@ -67,8 +67,8 @@ class NumberTest {
 
     @Test
     void shouldReturnThirtyOneByCombiningThreeAndOne() {
-        Number three = new Number('3');
-        Number one = new Number('1');
+        Number three = new Number("3");
+        Number one = new Number("1");
 
         List<Lexical> result = three.combine(one);
 
@@ -78,7 +78,7 @@ class NumberTest {
 
     @Test
     void shouldReturnThreeAndAddOperatorByCombiningThreeAndAddOperator() {
-        Number three = new Number('3');
+        Number three = new Number("3");
 
         List<Lexical> result = three.combine(ADD);
 

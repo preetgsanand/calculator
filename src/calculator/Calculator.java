@@ -3,7 +3,7 @@ package calculator;
 import calculator.evaluator.InfixEvaluator;
 import calculator.expression.InfixExpression;
 import calculator.base.Lexical;
-import calculator.parser.Parser;
+import calculator.parser.ExpressionParser;
 
 import java.util.Scanner;
 
@@ -14,8 +14,8 @@ public class Calculator {
         Scanner scanner = new Scanner(System.in);
         String expression = scanner.nextLine();
 
-        Parser parser = new Parser(expression);
-        InfixExpression parsedInfixExpression = parser.parseToInfix();
+        ExpressionParser expressionParser = new ExpressionParser(expression);
+        InfixExpression parsedInfixExpression = expressionParser.toInfix();
 
         InfixEvaluator infixEvaluator = new InfixEvaluator();
         Lexical result = parsedInfixExpression.evaluate(infixEvaluator);

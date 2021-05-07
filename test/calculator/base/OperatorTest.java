@@ -16,7 +16,7 @@ class OperatorTest {
 
     @Test
     void shouldReturnAddOperatorForPlusSign() {
-        Character character = '+';
+        String character = "+";
 
         Operator result = Operator.of(character);
 
@@ -25,7 +25,7 @@ class OperatorTest {
 
     @Test
     void shouldReturnAddInvalidForUnsupportedOperator() {
-        Character character = '~';
+        String character = "~";
 
         Operator result = Operator.of(character);
 
@@ -34,8 +34,8 @@ class OperatorTest {
 
     @Test
     void shouldReturnAddTwoNumberForAddOperator() {
-        Number one = new Number('1');
-        Number two = new Number('2');
+        Number one = new Number("1");
+        Number two = new Number("2");
 
         Number result = ADD.operate(one, two);
 
@@ -44,8 +44,8 @@ class OperatorTest {
 
     @Test
     void shouldThrowUnsupportedOperatorExceptionForInvalidOperator() {
-        Number one = new Number('1');
-        Number two = new Number('2');
+        Number one = new Number("1");
+        Number two = new Number("2");
 
         assertThrows(UnsupportedOperatorException.class, () -> INVALID.operate(one, two));
     }

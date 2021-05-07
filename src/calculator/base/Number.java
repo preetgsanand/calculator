@@ -13,8 +13,8 @@ public class Number implements Lexical {
         this.value = value;
     }
 
-    public Number(Character character) {
-        this.value = parseDouble(String.valueOf(character));
+    public Number(String value) {
+        this.value = parseDouble(value);
     }
 
     @Override
