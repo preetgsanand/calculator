@@ -69,4 +69,15 @@ class CalculatorTest {
 
         assertEquals("-2.18", result);
     }
+
+    @Test
+    void shouldHandleEmptyExpression() {
+        setSystemWithExpression("\r");
+        Calculator calculator = new Calculator(new Scanner(System.in));
+
+        calculator.takeInput();
+        String result = calculator.calculate();
+
+        assertEquals("0.0", result);
+    }
 }

@@ -1,10 +1,11 @@
 package calculator.evaluator;
 
+import calculator.base.Expression;
 import calculator.base.Lexical;
 import calculator.base.Number;
 import calculator.base.Operator;
+import calculator.exception.ExpressionEvaluationException;
 
-import java.util.List;
 import java.util.Stack;
 
 import static calculator.base.Lexicon.OPERAND;
@@ -13,18 +14,24 @@ import static calculator.base.Operator.OPEN_BRACKET;
 public class InfixEvaluator implements Executable {
     private final Stack<Operator> operators;
     private final Stack<Number> operands;
+    private final Expression expression;
 
-    public InfixEvaluator() {
+    public InfixEvaluator(Expression expression) {
+        this.expression = expression;
         this.operators = new Stack<>();
         this.operands = new Stack<>();
     }
 
     @Override
-    public Lexical execute(List<Lexical> lexicals) {
-        reset();
-        lexicals.forEach(this::handleLexical);
-        finalizeRemainingOperations();
-        return operands.pop();
+    public Lexical execute() {
+        try {
+            reset();
+            expression.getLexicals().forEach(this::handleLexical);
+            finalizeRemainingOperations();
+            return result();
+        } catch (Exception exception) {
+            throw new ExpressionEvaluationException();
+        }
     }
 
     private void reset() {
@@ -85,5 +92,12 @@ public class InfixEvaluator implements Executable {
         Number firstOperand = operands.pop();
         Number result = operator.operate(firstOperand, secondOperand);
         operands.push(result);
+    }
+
+    private Lexical result() {
+        if (!operands.isEmpty()) {
+            return operands.pop();
+        }
+        return new Number(0.0);
     }
 }

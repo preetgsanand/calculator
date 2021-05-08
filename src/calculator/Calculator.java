@@ -1,7 +1,7 @@
 package calculator;
 
 import calculator.evaluator.InfixEvaluator;
-import calculator.expression.InfixExpression;
+import calculator.base.Expression;
 import calculator.base.Lexical;
 import calculator.parser.ExpressionParser;
 
@@ -21,10 +21,10 @@ public class Calculator {
 
     public String calculate() {
         ExpressionParser expressionParser = new ExpressionParser(input);
-        InfixExpression parsedInfixExpression = expressionParser.toInfix();
+        Expression infixExpression = expressionParser.toInfix();
 
-        InfixEvaluator infixEvaluator = new InfixEvaluator();
-        Lexical result = parsedInfixExpression.evaluate(infixEvaluator);
+        InfixEvaluator infixEvaluator = new InfixEvaluator(infixExpression);
+        Lexical result = infixEvaluator.execute();
 
         return result.getValue().toString();
     }

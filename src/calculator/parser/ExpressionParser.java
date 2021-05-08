@@ -4,7 +4,7 @@ import calculator.base.Lexical;
 import calculator.base.Number;
 import calculator.base.Operator;
 import calculator.exception.InvalidExpressionException;
-import calculator.expression.InfixExpression;
+import calculator.base.Expression;
 
 import java.util.Arrays;
 import java.util.List;
@@ -44,13 +44,13 @@ public class ExpressionParser {
         throw new InvalidExpressionException();
     }
 
-    public InfixExpression toInfix() {
+    public Expression toInfix() {
         String delimitedExpression = surroundOperatorsWithDelimiter(expression);
         String[] splitExpression = splitDelimitedExpression(delimitedExpression);
 
         List<Lexical> lexicals = Arrays.stream(splitExpression)
                 .map(this::parse)
                 .collect(Collectors.toList());
-        return new InfixExpression(lexicals);
+        return new Expression(lexicals);
     }
 }

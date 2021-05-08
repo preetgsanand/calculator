@@ -2,7 +2,7 @@ package calculator.parser;
 
 import calculator.base.Number;
 import calculator.exception.InvalidExpressionException;
-import calculator.expression.InfixExpression;
+import calculator.base.Expression;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -21,8 +21,8 @@ class ExpressionParserTest {
         String expression = "1+2";
         ExpressionParser expressionParser = new ExpressionParser(expression);
 
-        InfixExpression result = expressionParser.toInfix();
-        InfixExpression expected = new InfixExpression(
+        Expression result = expressionParser.toInfix();
+        Expression expected = new Expression(
                 List.of(
                         new Number(1.0),
                         ADD,
@@ -37,8 +37,8 @@ class ExpressionParserTest {
         String expression = "1+2*(3+4)";
         ExpressionParser expressionParser = new ExpressionParser(expression);
 
-        InfixExpression result = expressionParser.toInfix();
-        InfixExpression expected = new InfixExpression(
+        Expression result = expressionParser.toInfix();
+        Expression expected = new Expression(
                 List.of(
                         new Number(1.0),
                         ADD,
@@ -76,8 +76,8 @@ class ExpressionParserTest {
         String expression = "";
         ExpressionParser expressionParser = new ExpressionParser(expression);
 
-        InfixExpression result = expressionParser.toInfix();
-        InfixExpression expected = new InfixExpression(List.of());
+        Expression result = expressionParser.toInfix();
+        Expression expected = new Expression(List.of());
 
         assertEquals(expected, result);
     }
