@@ -36,7 +36,7 @@ public enum Operator implements Lexical {
         return precedence;
     }
 
-    public Number operate(Number firstNumber, Number secondNumber) {
+    public Number operate(Number firstNumber, Number secondNumber) throws UnsupportedOperatorException {
         switch (this) {
             case ADD: return firstNumber.add(secondNumber);
             case SUBTRACT: return firstNumber.subtract(secondNumber);

@@ -20,13 +20,17 @@ public class Calculator {
     }
 
     public String calculate() {
-        ExpressionParser expressionParser = new ExpressionParser(input);
-        Expression infixExpression = expressionParser.toInfix();
+        try {
+            ExpressionParser expressionParser = new ExpressionParser(input);
+            Expression infixExpression = expressionParser.toInfix();
 
-        InfixEvaluator infixEvaluator = new InfixEvaluator(infixExpression);
-        Lexical result = infixEvaluator.execute();
+            InfixEvaluator infixEvaluator = new InfixEvaluator(infixExpression);
+            Lexical result = infixEvaluator.execute();
 
-        return result.getValue().toString();
+            return result.getValue().toString();
+        } catch (Exception exception) {
+            return exception.getMessage();
+        }
     }
 
     public static void main(String[] args) {
@@ -37,6 +41,6 @@ public class Calculator {
 
         calculator.takeInput();
         String result = calculator.calculate();
-        System.out.println("Result is : " + result);
+        System.out.println("Result : " + result);
     }
 }

@@ -23,7 +23,7 @@ public class InfixEvaluator implements Executable {
     }
 
     @Override
-    public Lexical execute() {
+    public Lexical execute() throws ExpressionEvaluationException {
         try {
             reset();
             expression.getLexicals().forEach(this::handleLexical);

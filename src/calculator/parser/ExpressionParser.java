@@ -35,7 +35,7 @@ public class ExpressionParser {
         return !parsedOperator.equals(INVALID);
     }
 
-    private Lexical parse(String lexical) {
+    private Lexical parse(String lexical) throws InvalidExpressionException {
         if (isOperand(lexical)) {
             return new Number(lexical);
         } else if (isOperator(lexical)) {
@@ -44,7 +44,7 @@ public class ExpressionParser {
         throw new InvalidExpressionException();
     }
 
-    public Expression toInfix() {
+    public Expression toInfix() throws InvalidExpressionException {
         String delimitedExpression = surroundOperatorsWithDelimiter(expression);
         String[] splitExpression = splitDelimitedExpression(delimitedExpression);
 
