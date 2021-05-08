@@ -51,4 +51,13 @@ class ParserUtilsTest {
 
         assertEquals(new String[]{"2", "*", "(", "3", "+", "4", ")"}, result);
     }
+
+    @Test
+    void shouldHandleEmptyExpression() {
+        String expression = "";
+
+        String[] result = splitDelimitedExpression(expression);
+
+        assertEquals(new String[]{}, result);
+    }
 }

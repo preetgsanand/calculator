@@ -67,6 +67,6 @@ class CalculatorTest {
         calculator.takeInput();
         String result = calculator.calculate();
 
-        assertEquals("-2.8", result);
+        assertEquals("-2.18", result);
     }
 }

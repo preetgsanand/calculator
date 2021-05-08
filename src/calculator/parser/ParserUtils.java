@@ -18,6 +18,9 @@ public class ParserUtils {
     }
 
     public static String[] splitDelimitedExpression(String expression) {
+        if (expression.length() == 0) {
+            return new String[]{};
+        }
         return expression.split(OPERATOR_DELIMITER);
     }
 }

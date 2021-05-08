@@ -9,18 +9,18 @@ import java.util.Scanner;
 
 public class Calculator {
     private final Scanner scanner;
-    private String expression;
+    private String input;
 
     public Calculator(Scanner scanner) {
         this.scanner = scanner;
     }
 
     public void takeInput() {
-        expression = scanner.nextLine();
+        input = scanner.nextLine();
     }
 
     public String calculate() {
-        ExpressionParser expressionParser = new ExpressionParser(expression);
+        ExpressionParser expressionParser = new ExpressionParser(input);
         InfixExpression parsedInfixExpression = expressionParser.toInfix();
 
         InfixEvaluator infixEvaluator = new InfixEvaluator();

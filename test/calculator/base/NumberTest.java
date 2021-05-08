@@ -64,26 +64,4 @@ class NumberTest {
 
         assertEquals(result.getValue(), Double.valueOf(3));
     }
-
-    @Test
-    void shouldReturnThirtyOneByCombiningThreeAndOne() {
-        Number three = new Number("3");
-        Number one = new Number("1");
-
-        List<Lexical> result = three.combine(one);
-
-        assertEquals(result.size(), 1);
-        assertEquals(result.get(0).getValue(), 31d);
-    }
-
-    @Test
-    void shouldReturnThreeAndAddOperatorByCombiningThreeAndAddOperator() {
-        Number three = new Number("3");
-
-        List<Lexical> result = three.combine(ADD);
-
-        assertEquals(result.size(), 2);
-        assertEquals(result.get(0).getValue(), 3d);
-        assertEquals(result.get(1).getValue(), ADD.getValue());
-    }
 }

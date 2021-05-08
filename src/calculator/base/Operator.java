@@ -3,7 +3,6 @@ package calculator.base;
 import calculator.exception.UnsupportedOperatorException;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static calculator.base.Lexicon.OPERATOR;
 
@@ -22,11 +21,6 @@ public enum Operator implements Lexical {
     Operator(String value, Integer precedence) {
         this.value = value;
         this.precedence = precedence;
-    }
-
-    @Override
-    public List<Lexical> combine(Lexical lexical) {
-        return List.of(this, lexical);
     }
 
     @Override

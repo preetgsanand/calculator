@@ -3,10 +3,12 @@ package calculator.parser;
 import calculator.base.Lexical;
 import calculator.base.Number;
 import calculator.base.Operator;
-import calculator.exception.ExpressionParsingException;
+import calculator.exception.InvalidExpressionException;
 import calculator.expression.InfixExpression;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static calculator.base.Operator.INVALID;
 import static calculator.parser.ParserUtils.splitDelimitedExpression;
@@ -39,16 +41,16 @@ public class ExpressionParser {
         } else if (isOperator(lexical)) {
             return Operator.of(lexical);
         }
-        throw new ExpressionParsingException();
+        throw new InvalidExpressionException();
     }
 
     public InfixExpression toInfix() {
-        InfixExpression parsedInfixExpression = new InfixExpression();
         String delimitedExpression = surroundOperatorsWithDelimiter(expression);
+        String[] splitExpression = splitDelimitedExpression(delimitedExpression);
 
-        Arrays.stream(splitDelimitedExpression(delimitedExpression))
+        List<Lexical> lexicals = Arrays.stream(splitExpression)
                 .map(this::parse)
-                .forEach(parsedInfixExpression::add);
-        return parsedInfixExpression;
+                .collect(Collectors.toList());
+        return new InfixExpression(lexicals);
     }
 }

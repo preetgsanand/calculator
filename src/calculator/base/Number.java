@@ -1,6 +1,5 @@
 package calculator.base;
 
-import java.util.List;
 import java.util.Objects;
 
 import static calculator.base.Lexicon.OPERAND;
@@ -28,15 +27,6 @@ public class Number implements Lexical {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    @Override
-    public List<Lexical> combine(Lexical lexical) {
-        if (lexical.getType().equals(OPERAND)) {
-            Double newValue = value * 10 + (Double) lexical.getValue();
-            return List.of(new Number(newValue));
-        }
-        return List.of(this, lexical);
     }
 
     @Override
